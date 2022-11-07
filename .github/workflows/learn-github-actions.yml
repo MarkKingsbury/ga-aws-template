@@ -22,3 +22,10 @@ jobs:
         run: echo "$Greeting $First_Name. Today is $DAY_OF_WEEK!, in $GITHUB_REPOSITORY (from a default env var)"
         env:
           First_Name: Mona
+  prod-check:
+    # use ref value in the github context
+    if: ${{ github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    steps:
+      # print the default env var
+      - run: echo "Deploying to production server on branch $GITHUB_REF"
