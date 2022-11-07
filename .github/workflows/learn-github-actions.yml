@@ -32,7 +32,7 @@ jobs:
   use-secret-job:
     runs-on: ubuntu-latest
     steps:
-      - name: "Get the secret"
+      - name: "Get the new secret"
         run: echo "it's... $First_Secret"
         env:
           First_Secret: ${{ secrets.FIRST_SECRET }}
