@@ -11,8 +11,10 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '14'
-      - run: npm install -g bats
-      - run: bats -v
+        run |
+         npm install -g bats
+         ls ${{ github.workspace }}
+         bats -v
   greeting_job:
     runs-on: ubuntu-latest
     env:
@@ -30,9 +32,10 @@ jobs:
       # print the default env var
       - run: echo "Deploying to production server on branch $GITHUB_REF"
   use-secret-job:
+    env:
+      First_Secret: ${{ secrets.FIRST_SECRET }}
+    if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
     steps:
       - name: "Get the new secret"
         run: echo "it's... $First_Secret"
-        env:
-          First_Secret: ${{ secrets.FIRST_SECRET }}
