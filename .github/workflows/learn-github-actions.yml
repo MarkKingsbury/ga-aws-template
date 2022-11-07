@@ -51,4 +51,5 @@ jobs:
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
+          echo "a second line?"
       - run: echo "🍏 This job's status is ${{ job.status }}."
