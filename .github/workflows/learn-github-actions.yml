@@ -19,7 +19,6 @@ jobs:
       Greeting: Hello
     steps:
       - name: "Say Hello Mona it's Monday"
-      - run: echo "$Greeting $First_Name. Today is $DAY_OF_WEEK!"
+        run: echo "$Greeting $First_Name. Today is $DAY_OF_WEEK!, in $GITHUB_REPOSITORY (from a default env var)"
         env:
           First_Name: Mona
-      - run: echo "i am in $GITHUB_REPOSITORY comes from a default env var"
