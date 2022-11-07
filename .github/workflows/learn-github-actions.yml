@@ -12,9 +12,8 @@ jobs:
         with:
           node-version: '14'
       - run: npm install -g bats
-      - run:
-         ls ${{ github.workspace }}
-         bats -v
+      - run: ls ${{ github.workspace }}
+      - run: bats -v
   greeting_job:
     runs-on: ubuntu-latest
     env:
