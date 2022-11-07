@@ -29,3 +29,10 @@ jobs:
     steps:
       # print the default env var
       - run: echo "Deploying to production server on branch $GITHUB_REF"
+  use-secret-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Get the secret"
+        run: echo "it's... $First_Secret"
+        env:
+          First_Secret: ${{ secrets.FIRST_SECRET }}
