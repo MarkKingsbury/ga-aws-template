@@ -64,7 +64,7 @@ jobs:
        env:
          S3_Role_ARN: ${{ secrets.S3_ROLE_ARN }}
        with:
-         role-to-assume: S3_Role_ARN
+         role-to-assume: $S3_Role_ARN
          role-duration-seconds: 900 # the ttl of the session, in seconds.
          aws-region: eu-west-2 # use your region here.
      # You can now execute commands that use the credentials👇
