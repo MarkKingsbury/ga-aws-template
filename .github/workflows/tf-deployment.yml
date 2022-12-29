@@ -1,0 +1,24 @@
+name: Terraform environment deployment
+on:
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: write
+jobs:
+  mk-debug-start:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "START OF TF DEPLOYMENT"
+  terraform-test-deployment:
+    uses: markkingsbury/ga-aws-template/.github/common/tf-plan-approve-apply.yml@main
+    with:
+      environment: test
+      tf_dir: deployments
+    secrets:
+      ROLE_ARN: ${{ secrets.S3_ROLE_ARN }}
+      AWS_PARAM_STORE_TF_BACKEND_KEY: ${{ secrets.AWS_PARAM_STORE_TF_BACKEND_KEY }}
+  mk-debug-end:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "END OF TF DEPLOYMENT"

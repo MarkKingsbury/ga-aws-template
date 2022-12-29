@@ -1,0 +1,54 @@
+name: terraform-environments-action
+on:
+  workflow_call:
+    inputs:
+      environment:
+        type: string
+        required: true
+      tf_dir:
+        type: string
+        required: true
+    secrets:
+      ROLE_ARN:
+        required: true
+      AWS_PARAM_STORE_TF_BACKEND_KEY:
+        required: true
+
+env:
+  GITHUB_URL: "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+  ENV: ${{ inputs.environment }}
+  AWS_PARAM_STORE_TF_BACKEND_KEY: ${{ secrets.AWS_PARAM_STORE_TF_BACKEND_KEY }}
+  AWS_PARAM_STORE_TF_VARS_KEY: tre-${{ inputs.environment }}-tfvars
+  TRIGGERING_ACTOR: ${{ github.triggering_actor }}
+  TF_DIR: ${{ inputs.tf_dir }}
+  TERRAFORM_PLAN_BUCKET: s3://tre-terraform-plan
+jobs:
+  mk-debug-start:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "START OF TF PLAN APPROVE APPLY}"
+  plan:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    steps:
+      - name: Configure AWS credentials for test AWS role
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: ${{ secrets.ROLE_ARN }}
+          aws-region: eu-west-2
+          role-session-name: github-username-${{ github.triggering_actor }}
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - name: Setting terraform version
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.3.5
+          terraform_wrapper: false
+      - name: Install python dependencies
+        run: |
+          pip install -r scripts/requirements.txt
+      - name: Terraform Plan
+        run: |
+          ./scripts/plan.sh
