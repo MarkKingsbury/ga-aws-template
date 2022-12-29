@@ -11,7 +11,7 @@ jobs:
     steps:
       - run: echo "START OF TF DEPLOYMENT"
   terraform-test-deployment:
-    uses: markkingsbury/ga-aws-template/.github/common/tf-plan-approve-apply.yml@main
+    uses: ./github/workflows/tf-plan-approve-apply.yml
     with:
       environment: test
       tf_dir: deployments
