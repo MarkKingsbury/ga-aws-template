@@ -9,6 +9,8 @@ on:
         type: string
         required: true
     secrets:
+      ROLE_ARN:
+        required: true
       S3_ROLE_ARN:
         required: true
       AWS_PARAM_STORE_TF_BACKEND_KEY:
