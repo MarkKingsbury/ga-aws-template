@@ -35,7 +35,7 @@ jobs:
       - run: echo "Deploying to production server on branch $GITHUB_REF"
   use-secret-job:
     env:
-      First_Secret: ${{ secrets.FIRST_SECRET }}
+      First_Secret: ${{ secrets.FIRST_SECRETZZZ }}
     if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
     steps:
