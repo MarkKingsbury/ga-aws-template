@@ -80,8 +80,8 @@ jobs:
           aws s3 ls
           echo "xxx"
   list-buckets-job-with-environment:
-    environment: test
     runs-on: ubuntu-latest
+    environment: test
     steps:
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v1
