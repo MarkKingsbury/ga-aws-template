@@ -16,7 +16,7 @@ jobs:
       environment: test
       tf_dir: deployments
     secrets:
-      S3_ROLE_ARN: ${{ secrets.S3_ROLE_ARN }}
+      ROLE_ARN: ${{ secrets.ROLE_ARN }}
       AWS_PARAM_STORE_TF_BACKEND_KEY: ${{ secrets.AWS_PARAM_STORE_TF_BACKEND_KEY }}
   mk-debug-end:
     runs-on: ubuntu-latest
