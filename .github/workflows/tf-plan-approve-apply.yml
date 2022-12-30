@@ -44,7 +44,8 @@ jobs:
       - run: echo "START OF TF PLAN APPROVE APPLY}"
   plan:
     runs-on: ubuntu-latest
-    environment: ${{ inputs.environment }}
+#    environment: ${{ inputs.environment }}
+    environment: test
     steps:
       - name: Configure AWS credentials for test AWS role
         uses: aws-actions/configure-aws-credentials@v1
