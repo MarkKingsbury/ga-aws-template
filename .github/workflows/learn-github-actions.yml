@@ -65,7 +65,22 @@ jobs:
           ls ${{ github.workspace }}
           echo "a second line?"
       - run: echo "🍏 This job's status is ${{ job.status }}."
-  list-buckets-job:
+  list-buckets-job-no-environment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: ${{ secrets.ROLE_ARN }}
+          role-duration-seconds: 900 # the ttl of the session, in seconds.
+          aws-region: eu-west-2 # use your region here.
+      # You can now execute commands that use the credentials
+      - name: list bucket
+        run: |
+          echo "List bucket ----"
+          aws s3 ls
+          echo "xxx"
+  list-buckets-job-with-environment:
     runs-on: ubuntu-latest
     environment: test
     steps:
@@ -81,18 +96,3 @@ jobs:
         echo "List bucket ----"
         aws s3 ls
         echo "xxx"
-  list-buckets-job-two:
-    runs-on: ubuntu-latest
-    steps:
-      - name: configure aws credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          role-to-assume: ${{ secrets.ROLE_ARN }}
-          role-duration-seconds: 900 # the ttl of the session, in seconds.
-          aws-region: eu-west-2 # use your region here.
-      # You can now execute commands that use the credentials
-      - name: list bucket
-        run: |
-          echo "List bucket ----"
-          aws s3 ls
-          echo "xxx"
