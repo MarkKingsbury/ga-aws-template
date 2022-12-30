@@ -65,20 +65,6 @@ jobs:
           ls ${{ github.workspace }}
           echo "a second line?"
       - run: echo "🍏 This job's status is ${{ job.status }}."
-  list-buckets-job-no-environment:
-    runs-on: ubuntu-latest
-    steps:
-      - name: configure aws credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          role-to-assume: ${{ secrets.S3_ROLE_ARN }}
-          aws-region: eu-west-2
-          role-session-name: github-username-${{ github.triggering_actor }}
-      - name: list bucket
-        run: |
-          echo "List bucket ----"
-          aws s3 ls
-          echo "xxx"
   list-buckets-job-with-environment:
     runs-on: ubuntu-latest
     environment: test
