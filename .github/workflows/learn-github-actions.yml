@@ -41,6 +41,15 @@ jobs:
     steps:
       - name: "Get the new secret"
         run: echo "it's... $First_Secret"
+  use-secret-from-environment:
+    environment: test
+    env:
+      First_Secret: ${{ secrets.FIRST_SECRET }}
+    if: ${{ github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Get the new secret"
+        run: echo "it's... $First_Secret"
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
