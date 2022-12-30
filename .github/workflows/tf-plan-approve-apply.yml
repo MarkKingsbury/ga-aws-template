@@ -36,7 +36,8 @@ jobs:
         with:
           role-to-assume: ${{ secrets.S3_ROLE_ARN }}
           aws-region: eu-west-2
-          role-session-name: github-username-${{ github.triggering_actor }}
+#          role-session-name: github-username-${{ github.triggering_actor }}
+          role-duration-seconds: 900 # the ttl of the session, in seconds.
       - name: Checkout
         uses: actions/checkout@v2
         with:
