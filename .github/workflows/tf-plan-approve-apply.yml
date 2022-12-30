@@ -49,12 +49,12 @@ jobs:
       - name: Install python dependencies
         run: |
           pip install -r scripts/requirements.txt
-      - name: Move /Scripts to Working Directory
-        run: |
-          pwd
-          ls -la 
-          mv ./scripts/* .
-          ls -la
+#      - name: Move /Scripts to Working Directory
+#        run: |
+#          pwd
+#          ls -la
+#          mv ./scripts/* .
+#          ls -la
       - name: Terraform Plan
         run: |
           ./scripts/plan.sh

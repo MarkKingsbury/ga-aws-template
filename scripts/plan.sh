@@ -13,7 +13,6 @@ trap cleanup EXIT
 ls -la
 pwd
 cd "${TF_DIR}"
-pwd
 ls -la
 sh ../scripts/init.sh
 ls -la
