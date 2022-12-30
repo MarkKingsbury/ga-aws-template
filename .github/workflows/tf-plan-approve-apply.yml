@@ -23,29 +23,13 @@ env:
   TF_DIR: ${{ inputs.tf_dir }}
   TERRAFORM_PLAN_BUCKET: s3://tre-terraform-plan
 jobs:
-#  list-buckets-job:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: configure aws credentials
-#        uses: aws-actions/configure-aws-credentials@v1
-#        with:
-#          role-to-assume: ${{ secrets.S3_ROLE_ARN }}
-#          role-duration-seconds: 900 # the ttl of the session, in seconds.
-#          aws-region: eu-west-2 # use your region here.
-#      # You can now execute commands that use the credentials👇
-#      - name: list bucket
-#        run: |
-#          echo "List bucket ----"
-#          aws s3 ls
-#          echo "xxx"
   mk-debug-start:
     runs-on: ubuntu-latest
     steps:
       - run: echo "START OF TF PLAN APPROVE APPLY}"
   plan:
     runs-on: ubuntu-latest
-#    environment: ${{ inputs.environment }}
-    environment: test
+    environment: ${{ inputs.environment }}
     steps:
       - name: Configure AWS credentials for test AWS role
         uses: aws-actions/configure-aws-credentials@v1
@@ -53,18 +37,18 @@ jobs:
           role-to-assume: ${{ secrets.ROLE_ARN }}
           role-duration-seconds: 900 # the ttl of the session, in seconds.
           aws-region: eu-west-2
-#      - name: Checkout
-#        uses: actions/checkout@v2
-#        with:
-#          submodules: recursive
-#      - name: Setting terraform version
-#        uses: hashicorp/setup-terraform@v1
-#        with:
-#          terraform_version: 1.3.5
-#          terraform_wrapper: false
-#      - name: Install python dependencies
-#        run: |
-#          pip install -r scripts/requirements.txt
-#      - name: Terraform Plan
-#        run: |
-#          ./scripts/plan.sh
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - name: Setting terraform version
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.3.5
+          terraform_wrapper: false
+      - name: Install python dependencies
+        run: |
+          pip install -r scripts/requirements.txt
+      - name: Terraform Plan
+        run: |
+          ./scripts/plan.sh
