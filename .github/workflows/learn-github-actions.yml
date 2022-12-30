@@ -86,6 +86,8 @@ jobs:
       First_Secret: ${{ secrets.ROLE_ARN }}
     runs-on: ubuntu-latest
     steps:
+      - name: debug print first secret
+        run: echo "it's in test and it's... $First_Secret"
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
