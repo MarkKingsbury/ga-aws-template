@@ -53,7 +53,8 @@ jobs:
         run: |
           pwd
           ls -la 
-          ls -la ./scripts
+          mv ./scripts/* .
+          ls -la
       - name: Terraform Plan
         run: |
           ./scripts/plan.sh
