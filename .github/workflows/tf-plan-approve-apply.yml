@@ -34,7 +34,7 @@ jobs:
       - name: Configure AWS credentials for test AWS role
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          role-to-assume: ${{ secrets.ROLE_ARN }}
+          role-to-assume: ${{ secrets.S3_ROLE_ARN }}
           aws-region: eu-west-2
           role-session-name: github-username-${{ github.triggering_actor }}
       - name: Checkout
