@@ -58,11 +58,12 @@ jobs:
       - run: echo "🍏 This job's status is ${{ job.status }}."
   list-buckets-job:
     runs-on: ubuntu-latest
+    environment: test
     steps:
      - name: configure aws credentials
        uses: aws-actions/configure-aws-credentials@v1
        with:
-         role-to-assume: ${{ secrets.S3_ROLE_ARN }}
+         role-to-assume: ${{ secrets.ROLE_ARN }}
          role-duration-seconds: 900 # the ttl of the session, in seconds.
          aws-region: eu-west-2 # use your region here.
      # You can now execute commands that use the credentials👇
