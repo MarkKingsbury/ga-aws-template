@@ -79,7 +79,7 @@ jobs:
           echo "List bucket ----"
           aws s3 ls
           echo "xxx"
-  list-buckets-job-with-environment:
+  list-buckets-job-with-environmentt:
     runs-on: ubuntu-latest
     environment: test
     steps:
