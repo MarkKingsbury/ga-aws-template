@@ -9,4 +9,4 @@ echo "after tf init"
 terraform workspace list
 terraform workspace list > /dev/null 2> error.txt
 echo "after ws list"
-#terraform workspace select "${ENV}" > /dev/null 2> error.txt
+terraform workspace select "${ENV}" > /dev/null 2> error.txt
