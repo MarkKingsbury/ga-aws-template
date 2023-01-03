@@ -13,14 +13,14 @@ provider "aws" {
   region = "eu-west-2"
 }
 
-resource "aws_instance" "app_server" {
-  ami           = "ami-0f540e9f488cfa27d"
-  instance_type = "t2.micro"
-
-  tags = {
-    Name = var.instance_name
-  }
-}
+#resource "aws_instance" "app_server" {
+#  ami           = "ami-0f540e9f488cfa27d"
+#  instance_type = "t2.micro"
+#
+#  tags = {
+#    Name = var.instance_name
+#  }
+#}
 
 terraform {
   backend "s3" {

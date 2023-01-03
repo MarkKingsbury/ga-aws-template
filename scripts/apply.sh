@@ -19,6 +19,4 @@ sh ../scripts/init.sh
 #terraform plan -var-file="terraform.tfvars.json" -input=false -out plan.out > /dev/null 2> error.txt
 aws s3 cp "${TERRAFORM_PLAN_BUCKET}"/"${ENV}"/"${TRIGGERING_ACTOR}"/plan.out plan.out > /dev/null 2> error.txt
 echo "just before tf apply"
-aws ec2 describe-instances
 terraform apply -input=false plan.out > apply.out 2> error.txt
-aws ec2 describe-instances
