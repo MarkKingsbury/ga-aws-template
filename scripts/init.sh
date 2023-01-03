@@ -6,6 +6,7 @@ aws ssm get-parameters --name "${AWS_PARAM_STORE_TF_BACKEND_KEY}" --with-decrypt
 echo "after get-parameters"
 terraform init -backend-config=backend.conf -reconfigure > /dev/null 2> error.txt
 echo "after tf init"
+terraform workspace list
 terraform workspace list > /dev/null 2> error.txt
 echo "after ws list"
 #terraform workspace select "${ENV}" > /dev/null 2> error.txt
