@@ -1,6 +1,6 @@
 name: learn-github-actions
 run-name: ${{ github.actor }} is learning GitHub Actions
-on: [push]
+#on: [push]
 permissions:
   id-token: write # required to use OIDC authentication
 #  contents: read # required to checkout the code from the repo
