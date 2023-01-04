@@ -6,7 +6,7 @@ permissions:
   id-token: write
   contents: write
 jobs:
-  terraform-test-deployment:
+  tf-test-deployment:
     uses: ./.github/workflows/tf-plan-approve-apply.yml
     with:
       environment: test
@@ -14,7 +14,9 @@ jobs:
     secrets:
       ROLE_ARN: ${{ secrets.ROLE_ARN }}
       AWS_PARAM_STORE_TF_BACKEND_KEY: ${{ secrets.AWS_PARAM_STORE_TF_BACKEND_KEY }}
-  terraform-pro-deployment:
+  tf-prod-deployment:
+    needs:
+      - tf-test-deployment
     uses: ./.github/workflows/tf-plan-approve-apply.yml
     with:
       environment: prod
