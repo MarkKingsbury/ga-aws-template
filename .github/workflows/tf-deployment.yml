@@ -14,9 +14,20 @@ jobs:
     secrets:
       ROLE_ARN: ${{ secrets.ROLE_ARN }}
       AWS_PARAM_STORE_TF_BACKEND_KEY: ${{ secrets.AWS_PARAM_STORE_TF_BACKEND_KEY }}
+  start-prod-deployment:
+    needs:
+      - plan
+    runs-on: ubuntu-latest
+    environment: manual-step
+    steps:
+      - name: Manual Approve Info
+        run: |
+          terraform -v
+          echo ${{ github.triggering_actor }}
+          echo ${{ github.actor }}
   tf-prod-deployment:
     needs:
-      - tf-test-deployment
+      - start-prod-env-deployment
     uses: ./.github/workflows/tf-plan-approve-apply.yml
     with:
       environment: prod
