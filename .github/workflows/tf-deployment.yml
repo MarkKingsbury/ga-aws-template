@@ -7,7 +7,7 @@ permissions:
   contents: write
 jobs:
   tf-test-deployment:
-    uses: ./.github/actions/tf-plan-approve-apply.yml@main
+    uses: ./.github/workflows/tf-plan-approve-apply.yml
     with:
       environment: test
       tf_dir: deployments
@@ -28,7 +28,7 @@ jobs:
   tf-prod-deployment:
     needs:
       - start-prod-deployment
-    uses: ./.github/actions/tf-plan-approve-apply.yml@main
+    uses: ./.github/workflows/tf-plan-approve-apply.yml
     with:
       environment: prod
       tf_dir: deployments
