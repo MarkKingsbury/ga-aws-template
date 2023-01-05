@@ -18,7 +18,7 @@ resource "aws_instance" "app_server" {
   instance_type = "t2.micro"
 
   tags = {
-    Name = "${var.instance_name}-v2-${var.environment_name}"
+    Name = "${var.instance_name}-v1-${var.environment_name}"
   }
 }
 

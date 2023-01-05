@@ -53,7 +53,7 @@ jobs:
     needs:
       - plan
     runs-on: ubuntu-latest
-    environment: manual-step
+    environment: approve-plan-${{ inputs.environment }}
     steps:
       - name: Manual Approve Info
         run: |
