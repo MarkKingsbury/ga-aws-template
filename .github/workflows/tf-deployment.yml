@@ -16,7 +16,7 @@ jobs:
       AWS_PARAM_STORE_TF_BACKEND_KEY: ${{ secrets.AWS_PARAM_STORE_TF_BACKEND_KEY }}
   start-prod-deployment:
     needs:
-      - plan
+      - tf-test-deployment
     runs-on: ubuntu-latest
     environment: manual-step
     steps:
@@ -27,7 +27,7 @@ jobs:
           echo ${{ github.actor }}
   tf-prod-deployment:
     needs:
-      - start-prod-env-deployment
+      - start-prod-deployment
     uses: ./.github/workflows/tf-plan-approve-apply.yml
     with:
       environment: prod
