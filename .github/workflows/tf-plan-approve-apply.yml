@@ -83,7 +83,7 @@ jobs:
       - name: Install python dependencies
         run: |
           pip install -r scripts/requirements.txt
-      - name: Terraform Plan
+      - name: Terraform Apply
         run: |
           ./scripts/apply.sh
 
